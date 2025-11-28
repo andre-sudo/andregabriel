@@ -1,0 +1,23 @@
+{
+  "name": "brand-world-model",
+  "version": "1.0.0",
+  "description": "AI-powered slide template generator that learns from brand materials",
+  "main": "server/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "node --watch server/index.js",
+    "analyze": "python3 src/analyzers/cli.py",
+    "generate": "python3 src/generators/cli.py"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "multer": "^1.4.5-lts.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}

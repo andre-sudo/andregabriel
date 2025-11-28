@@ -1,0 +1,27 @@
+# Brand World Model - Python Dependencies
+
+# Vision & Image Processing
+pillow>=10.0.0
+opencv-python>=4.8.0
+numpy>=1.24.0
+
+# AI/ML
+anthropic>=0.18.0
+openai>=1.12.0
+
+# PowerPoint Generation
+python-pptx>=0.6.21
+
+# Color Analysis
+colorthief>=0.2.1
+webcolors>=1.13
+
+# Utilities
+pydantic>=2.5.0
+pyyaml>=6.0.1
+python-dotenv>=1.0.0
+click>=8.1.7
+rich>=13.7.0
+
+# Image similarity
+imagehash>=4.3.1
