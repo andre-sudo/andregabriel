@@ -11,7 +11,7 @@ import os
 
 from pptx import Presentation
 from pptx.util import Inches, Pt
-from pptx.dml.color import RgbColor
+from pptx.dml.color import RGBColor
 from pptx.enum.text import PP_ALIGN, MSO_ANCHOR
 from pptx.enum.shapes import MSO_SHAPE
 
@@ -73,7 +73,7 @@ class PowerPointGenerator(BaseGenerator):
         fill = background.fill
         fill.solid()
         bg_color = self.get_color("background")
-        fill.fore_color.rgb = RgbColor(*self.hex_to_rgb(bg_color))
+        fill.fore_color.rgb = RGBColor(*self.hex_to_rgb(bg_color))
 
         # Build slide based on layout type
         if layout_type == "title_slide":
@@ -117,7 +117,7 @@ class PowerPointGenerator(BaseGenerator):
         title_para.text = title
         title_para.font.size = Pt(54)
         title_para.font.bold = True
-        title_para.font.color.rgb = RgbColor(*self.hex_to_rgb(self.get_color("primary")))
+        title_para.font.color.rgb = RGBColor(*self.hex_to_rgb(self.get_color("primary")))
         title_para.alignment = PP_ALIGN.CENTER
         title_font = self.get_font("heading")
         title_para.font.name = title_font["family"]
@@ -132,7 +132,7 @@ class PowerPointGenerator(BaseGenerator):
             sub_para = sub_frame.paragraphs[0]
             sub_para.text = subtitle
             sub_para.font.size = Pt(24)
-            sub_para.font.color.rgb = RgbColor(*self.hex_to_rgb(self.get_color("text")))
+            sub_para.font.color.rgb = RGBColor(*self.hex_to_rgb(self.get_color("text")))
             sub_para.alignment = PP_ALIGN.CENTER
 
     def _build_content_slide(self, slide, content: Dict[str, Any]) -> None:
@@ -151,7 +151,7 @@ class PowerPointGenerator(BaseGenerator):
         title_para.text = title
         title_para.font.size = Pt(36)
         title_para.font.bold = True
-        title_para.font.color.rgb = RgbColor(*self.hex_to_rgb(self.get_color("primary")))
+        title_para.font.color.rgb = RGBColor(*self.hex_to_rgb(self.get_color("primary")))
         title_font = self.get_font("heading")
         title_para.font.name = title_font["family"]
 
@@ -163,7 +163,7 @@ class PowerPointGenerator(BaseGenerator):
         body_frame = body_box.text_frame
         body_frame.word_wrap = True
 
-        text_color = RgbColor(*self.hex_to_rgb(self.get_color("text")))
+        text_color = RGBColor(*self.hex_to_rgb(self.get_color("text")))
         body_font = self.get_font("body")
 
         if bullets:
@@ -196,7 +196,7 @@ class PowerPointGenerator(BaseGenerator):
             Inches(13.333), Inches(1.5)
         )
         shape.fill.solid()
-        shape.fill.fore_color.rgb = RgbColor(*self.hex_to_rgb(accent_color))
+        shape.fill.fore_color.rgb = RGBColor(*self.hex_to_rgb(accent_color))
         shape.line.fill.background()
 
         # Title centered on accent bar
@@ -209,7 +209,7 @@ class PowerPointGenerator(BaseGenerator):
         title_para.text = title
         title_para.font.size = Pt(44)
         title_para.font.bold = True
-        title_para.font.color.rgb = RgbColor(255, 255, 255)
+        title_para.font.color.rgb = RGBColor(255, 255, 255)
         title_para.alignment = PP_ALIGN.CENTER
 
     def _build_two_column_slide(self, slide, content: Dict[str, Any]) -> None:
@@ -228,7 +228,7 @@ class PowerPointGenerator(BaseGenerator):
         title_para.text = title
         title_para.font.size = Pt(36)
         title_para.font.bold = True
-        title_para.font.color.rgb = RgbColor(*self.hex_to_rgb(self.get_color("primary")))
+        title_para.font.color.rgb = RGBColor(*self.hex_to_rgb(self.get_color("primary")))
 
         # Left column
         left_box = slide.shapes.add_textbox(
@@ -240,7 +240,7 @@ class PowerPointGenerator(BaseGenerator):
         left_para = left_frame.paragraphs[0]
         left_para.text = left_content if isinstance(left_content, str) else '\n'.join(left_content)
         left_para.font.size = Pt(18)
-        left_para.font.color.rgb = RgbColor(*self.hex_to_rgb(self.get_color("text")))
+        left_para.font.color.rgb = RGBColor(*self.hex_to_rgb(self.get_color("text")))
 
         # Right column
         right_box = slide.shapes.add_textbox(
@@ -252,7 +252,7 @@ class PowerPointGenerator(BaseGenerator):
         right_para = right_frame.paragraphs[0]
         right_para.text = right_content if isinstance(right_content, str) else '\n'.join(right_content)
         right_para.font.size = Pt(18)
-        right_para.font.color.rgb = RgbColor(*self.hex_to_rgb(self.get_color("text")))
+        right_para.font.color.rgb = RGBColor(*self.hex_to_rgb(self.get_color("text")))
 
     def _build_image_left_slide(self, slide, content: Dict[str, Any]) -> None:
         """Build slide with image on left, content on right"""
@@ -270,7 +270,7 @@ class PowerPointGenerator(BaseGenerator):
         title_para.text = title
         title_para.font.size = Pt(32)
         title_para.font.bold = True
-        title_para.font.color.rgb = RgbColor(*self.hex_to_rgb(self.get_color("primary")))
+        title_para.font.color.rgb = RGBColor(*self.hex_to_rgb(self.get_color("primary")))
 
         # Image placeholder on left
         if image_path and os.path.exists(image_path):
@@ -287,7 +287,7 @@ class PowerPointGenerator(BaseGenerator):
                 Inches(5.5), Inches(6)
             )
             shape.fill.solid()
-            shape.fill.fore_color.rgb = RgbColor(229, 231, 235)
+            shape.fill.fore_color.rgb = RGBColor(229, 231, 235)
 
         # Body on right
         body_box = slide.shapes.add_textbox(
@@ -299,7 +299,7 @@ class PowerPointGenerator(BaseGenerator):
         body_para = body_frame.paragraphs[0]
         body_para.text = body
         body_para.font.size = Pt(18)
-        body_para.font.color.rgb = RgbColor(*self.hex_to_rgb(self.get_color("text")))
+        body_para.font.color.rgb = RGBColor(*self.hex_to_rgb(self.get_color("text")))
 
     def _build_image_right_slide(self, slide, content: Dict[str, Any]) -> None:
         """Build slide with content on left, image on right"""
@@ -317,7 +317,7 @@ class PowerPointGenerator(BaseGenerator):
         title_para.text = title
         title_para.font.size = Pt(32)
         title_para.font.bold = True
-        title_para.font.color.rgb = RgbColor(*self.hex_to_rgb(self.get_color("primary")))
+        title_para.font.color.rgb = RGBColor(*self.hex_to_rgb(self.get_color("primary")))
 
         # Body on left
         body_box = slide.shapes.add_textbox(
@@ -329,7 +329,7 @@ class PowerPointGenerator(BaseGenerator):
         body_para = body_frame.paragraphs[0]
         body_para.text = body
         body_para.font.size = Pt(18)
-        body_para.font.color.rgb = RgbColor(*self.hex_to_rgb(self.get_color("text")))
+        body_para.font.color.rgb = RGBColor(*self.hex_to_rgb(self.get_color("text")))
 
         # Image on right
         if image_path and os.path.exists(image_path):
@@ -345,7 +345,7 @@ class PowerPointGenerator(BaseGenerator):
                 Inches(5.5), Inches(6)
             )
             shape.fill.solid()
-            shape.fill.fore_color.rgb = RgbColor(229, 231, 235)
+            shape.fill.fore_color.rgb = RGBColor(229, 231, 235)
 
     def _build_quote_slide(self, slide, content: Dict[str, Any]) -> None:
         """Build a quote slide"""
@@ -366,7 +366,7 @@ class PowerPointGenerator(BaseGenerator):
         quote_para.text = f'"{quote}"'
         quote_para.font.size = Pt(32)
         quote_para.font.italic = True
-        quote_para.font.color.rgb = RgbColor(*self.hex_to_rgb(self.get_color("text")))
+        quote_para.font.color.rgb = RGBColor(*self.hex_to_rgb(self.get_color("text")))
         quote_para.alignment = PP_ALIGN.CENTER
 
         # Attribution
@@ -379,7 +379,7 @@ class PowerPointGenerator(BaseGenerator):
             attr_para = attr_frame.paragraphs[0]
             attr_para.text = f"— {attribution}"
             attr_para.font.size = Pt(20)
-            attr_para.font.color.rgb = RgbColor(*self.hex_to_rgb(accent_color))
+            attr_para.font.color.rgb = RGBColor(*self.hex_to_rgb(accent_color))
             attr_para.alignment = PP_ALIGN.CENTER
 
     def _add_logo(self, slide) -> None:
