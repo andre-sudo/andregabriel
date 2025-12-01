@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brand World Model - AI Slide Generator</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <div class="app">
+        <header class="header">
+            <h1>🎨 Brand World Model</h1>
+            <p>AI-powered slide template generator that learns from your brand</p>
+        </header>
+
+        <main class="main">
+            <!-- Step 1: Upload & Analyze -->
+            <section class="card" id="analyze-section">
+                <h2>1. Analyze Your Brand</h2>
+                <p>Upload existing slides or brand materials to extract your design patterns.</p>
+
+                <div class="upload-area" id="slide-upload-area">
+                    <input type="file" id="slide-input" multiple accept="image/*" hidden>
+                    <div class="upload-content">
+                        <span class="upload-icon">📎</span>
+                        <p>Drag & drop slide images here, or <button class="link-btn" onclick="document.getElementById('slide-input').click()">browse</button></p>
+                        <small>Supports PNG, JPG, GIF, WebP (max 10MB each)</small>
+                    </div>
+                </div>
+
+                <div id="uploaded-files" class="file-list"></div>
+
+                <div class="form-group">
+                    <label for="brand-name">Brand Name</label>
+                    <input type="text" id="brand-name" placeholder="e.g., Acme Corporation">
+                </div>
+
+                <button class="btn btn-primary" id="analyze-btn" disabled>
+                    <span class="btn-text">Analyze Slides</span>
+                    <span class="btn-loading">Analyzing...</span>
+                </button>
+
+                <div id="analysis-result" class="result-box" hidden></div>
+            </section>
+
+            <!-- Step 2: Select Brand -->
+            <section class="card" id="brand-section">
+                <h2>2. Select Brand Profile</h2>
+                <p>Choose a brand profile to use for generating presentations.</p>
+
+                <div id="brand-list" class="brand-grid">
+                    <p class="empty-state">No brand profiles yet. Analyze some slides first!</p>
+                </div>
+
+                <button class="btn btn-secondary" id="refresh-brands-btn">
+                    Refresh Brand List
+                </button>
+            </section>
+
+            <!-- Step 3: Create Content -->
+            <section class="card" id="content-section">
+                <h2>3. Create Slide Content</h2>
+                <p>Add slides to your presentation. The generator will apply your brand styling.</p>
+
+                <div id="slides-editor">
+                    <div class="slide-form" data-slide-index="0">
+                        <div class="slide-header">
+                            <span class="slide-number">Slide 1</span>
+                            <select class="layout-select">
+                                <option value="title_slide">Title Slide</option>
+                                <option value="content" selected>Content</option>
+                                <option value="section_header">Section Header</option>
+                                <option value="two_column">Two Columns</option>
+                                <option value="image_left">Image Left</option>
+                                <option value="image_right">Image Right</option>
+                                <option value="quote">Quote</option>
+                            </select>
+                            <button class="btn-icon delete-slide" title="Delete slide">×</button>
+                        </div>
+                        <div class="slide-fields">
+                            <input type="text" class="slide-title" placeholder="Slide Title">
+                            <textarea class="slide-body" placeholder="Slide content (use new lines for bullet points)"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn btn-secondary" id="add-slide-btn">
+                    + Add Slide
+                </button>
+            </section>
+
+            <!-- Step 4: Generate -->
+            <section class="card" id="generate-section">
+                <h2>4. Generate Presentation</h2>
+                <p>Choose your output format and generate your branded presentation.</p>
+
+                <div class="format-options">
+                    <label class="format-option">
+                        <input type="checkbox" name="format" value="pptx" checked>
+                        <span class="format-label">
+                            <strong>PowerPoint</strong>
+                            <small>.pptx file for Microsoft PowerPoint</small>
+                        </span>
+                    </label>
+                    <label class="format-option">
+                        <input type="checkbox" name="format" value="html" checked>
+                        <span class="format-label">
+                            <strong>HTML (reveal.js)</strong>
+                            <small>Web-based presentation</small>
+                        </span>
+                    </label>
+                </div>
+
+                <button class="btn btn-primary btn-large" id="generate-btn" disabled>
+                    <span class="btn-text">Generate Presentation</span>
+                    <span class="btn-loading">Generating...</span>
+                </button>
+
+                <div id="generate-result" class="result-box" hidden></div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p>Brand World Model - Learn design patterns, generate on-brand presentations</p>
+        </footer>
+    </div>
+
+    <script src="/js/app.js"></script>
+</body>
+</html>
